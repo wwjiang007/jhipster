@@ -1,7 +1,7 @@
 /*
  * Copyright 2016-2017 the original author or authors from the JHipster project.
  *
- * This file is part of the JHipster project, see https://jhipster.github.io/
+ * This file is part of the JHipster project, see http://www.jhipster.tech/
  * for more information.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,8 +19,7 @@
 
 package io.github.jhipster.config.metrics;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 import org.springframework.boot.actuate.metrics.Metric;
 import org.springframework.boot.actuate.metrics.writer.Delta;
 import org.springframework.boot.actuate.metrics.writer.MetricWriter;
@@ -65,13 +64,15 @@ public class SpectatorLogMetricWriter implements MetricWriter {
             }
         }
 
-        log.info("type=GAUGE, hystrix_type={}, service={}, method={}, name={}, value={}", hystrixType, serviceName,
+        log.info(MarkerFactory.getMarker("metrics"), "type=GAUGE, hystrix_type={}, service={}, method={}, name={}, " +
+                "value={}", hystrixType, serviceName,
             methodName, metricName, metric.getValue());
     }
 
     @Override
     public void increment(Delta<?> metric) {
-        log.info("type=COUNTER, name={}, count={}", metric.getName(), metric.getValue());
+        log.info(MarkerFactory.getMarker("metrics"), "type=COUNTER, name={}, count={}", metric.getName(), metric
+            .getValue());
     }
 
     @Override

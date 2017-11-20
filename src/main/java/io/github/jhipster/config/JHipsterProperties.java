@@ -1,7 +1,7 @@
 /*
  * Copyright 2016-2017 the original author or authors from the JHipster project.
  *
- * This file is part of the JHipster project, see https://jhipster.github.io/
+ * This file is part of the JHipster project, see http://www.jhipster.tech/
  * for more information.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,9 +28,7 @@ import org.springframework.web.cors.CorsConfiguration;
 /**
  * Properties specific to JHipster.
  *
- * <p>
- * Properties are configured in the application.yml file.
- * </p>
+ * <p> Properties are configured in the application.yml file. </p>
  */
 @ConfigurationProperties(prefix = "jhipster", ignoreUnknownFields = false)
 public class JHipsterProperties {
@@ -183,12 +181,18 @@ public class JHipsterProperties {
 
         private final Ehcache ehcache = new Ehcache();
 
+        private final Infinispan infinispan = new Infinispan();
+
         public Hazelcast getHazelcast() {
             return hazelcast;
         }
 
         public Ehcache getEhcache() {
             return ehcache;
+        }
+
+        public Infinispan getInfinispan() {
+            return infinispan;
         }
 
         public static class Hazelcast {
@@ -234,6 +238,128 @@ public class JHipsterProperties {
 
             public void setMaxEntries(long maxEntries) {
                 this.maxEntries = maxEntries;
+            }
+        }
+
+        public static class Infinispan {
+
+            private String configFile = "default-configs/default-jgroups-tcp.xml";
+
+            private boolean statsEnabled;
+
+            private final Local local = new Local();
+
+            private final Distributed distributed = new Distributed();
+
+            private final Replicated replicated = new Replicated();
+
+            public String getConfigFile() {
+                return configFile;
+            }
+
+            public void setConfigFile(String configFile) {
+                this.configFile = configFile;
+            }
+
+            public boolean isStatsEnabled() {
+                return statsEnabled;
+            }
+
+            public void setStatsEnabled(boolean statsEnabled) {
+                this.statsEnabled = statsEnabled;
+            }
+
+            public Local getLocal() {
+                return local;
+            }
+
+            public Distributed getDistributed() {
+                return distributed;
+            }
+
+            public Replicated getReplicated() {
+                return replicated;
+            }
+
+            public static class Local {
+
+                private long timeToLiveSeconds = 60;
+
+                private long maxEntries = 100;
+
+                public long getTimeToLiveSeconds() {
+                    return timeToLiveSeconds;
+                }
+
+                public void setTimeToLiveSeconds(long timeToLiveSeconds) {
+                    this.timeToLiveSeconds = timeToLiveSeconds;
+                }
+
+                public long getMaxEntries() {
+                    return maxEntries;
+                }
+
+                public void setMaxEntries(long maxEntries) {
+                    this.maxEntries = maxEntries;
+                }
+
+            }
+
+            public static class Distributed {
+
+                private long timeToLiveSeconds = 60;
+
+                private long maxEntries = 100;
+
+                private int instanceCount = 1;
+
+                public long getTimeToLiveSeconds() {
+                    return timeToLiveSeconds;
+                }
+
+                public void setTimeToLiveSeconds(long timeToLiveSeconds) {
+                    this.timeToLiveSeconds = timeToLiveSeconds;
+                }
+
+                public long getMaxEntries() {
+                    return maxEntries;
+                }
+
+                public void setMaxEntries(long maxEntries) {
+                    this.maxEntries = maxEntries;
+                }
+
+                public int getInstanceCount() {
+                    return instanceCount;
+                }
+
+                public void setInstanceCount(int instanceCount) {
+                    this.instanceCount = instanceCount;
+                }
+            }
+
+            public static class Replicated {
+
+                private long timeToLiveSeconds = 60;
+
+                private long maxEntries = 100;
+
+                public long getTimeToLiveSeconds() {
+                    return timeToLiveSeconds;
+                }
+
+                public void setTimeToLiveSeconds(long timeToLiveSeconds) {
+                    this.timeToLiveSeconds = timeToLiveSeconds;
+                }
+
+                public long getMaxEntries() {
+                    return maxEntries;
+                }
+
+                public void setMaxEntries(long maxEntries) {
+                    this.maxEntries = maxEntries;
+                }
+
             }
         }
     }
@@ -326,49 +452,10 @@ public class JHipsterProperties {
 
         public static class Authentication {
 
-            private final Oauth oauth = new Oauth();
-
             private final Jwt jwt = new Jwt();
-
-            public Oauth getOauth() {
-                return oauth;
-            }
 
             public Jwt getJwt() {
                 return jwt;
-            }
-
-            public static class Oauth {
-
-                private String clientId;
-
-                private String clientSecret;
-
-                private int tokenValidityInSeconds = 1800;
-
-                public String getClientId() {
-                    return clientId;
-                }
-
-                public void setClientId(String clientId) {
-                    this.clientId = clientId;
-                }
-
-                public String getClientSecret() {
-                    return clientSecret;
-                }
-
-                public void setClientSecret(String clientSecret) {
-                    this.clientSecret = clientSecret;
-                }
-
-                public int getTokenValidityInSeconds() {
-                    return tokenValidityInSeconds;
-                }
-
-                public void setTokenValidityInSeconds(int tokenValidityInSeconds) {
-                    this.tokenValidityInSeconds = tokenValidityInSeconds;
-                }
             }
 
             public static class Jwt {
@@ -441,6 +528,10 @@ public class JHipsterProperties {
         private String licenseUrl;
 
         private String defaultIncludePattern = "/api/.*";
+
+        private String host;
+
+        private String[] protocols = {};
 
         public String getTitle() {
             return title;
@@ -520,6 +611,22 @@ public class JHipsterProperties {
 
         public void setDefaultIncludePattern(String defaultIncludePattern) {
             this.defaultIncludePattern = defaultIncludePattern;
+        }
+
+        public String getHost() {
+            return host;
+        }
+
+        public void setHost(final String host) {
+            this.host = host;
+        }
+
+        public String[] getProtocols() {
+            return protocols;
+        }
+
+        public void setProtocols(final String[] protocols) {
+            this.protocols = protocols;
         }
     }
 

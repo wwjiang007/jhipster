@@ -1,7 +1,7 @@
 /*
  * Copyright 2016-2017 the original author or authors from the JHipster project.
  *
- * This file is part of the JHipster project, see https://jhipster.github.io/
+ * This file is part of the JHipster project, see http://www.jhipster.tech/
  * for more information.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,8 +30,8 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Angular cookie saved the locale with a double quote (%22en%22).
- * So the default CookieLocaleResolver#StringUtils.parseLocaleString(localePart)
+ * Angular cookie saved the locale with a double quote (%22en%22). So the default CookieLocaleResolver#StringUtils
+ * .parseLocaleString(localePart)
  * is not able to parse the locale.
  *
  * This class will check if a double quote has been added, if so it will remove it.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors from the JHipster project.
+ * Copyright 2017 the original author or authors.
  *
  * This file is part of the JHipster project, see http://www.jhipster.tech/
  * for more information.
@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-package io.github.jhipster.domain.util;
+package io.github.jhipster.service.filter;
 
-import java.sql.Types;
+/**
+ * Filter class for {@link Long} type attributes.
+ *
+ * @see RangeFilter
+ */
+public class LongFilter extends RangeFilter<Long> {
 
-import org.hibernate.dialect.H2Dialect;
-
-public class FixedH2Dialect extends H2Dialect {
-
-    public FixedH2Dialect() {
-        super();
-        registerColumnType(Types.FLOAT, "real");
+    public LongFilter() {
     }
+
 }

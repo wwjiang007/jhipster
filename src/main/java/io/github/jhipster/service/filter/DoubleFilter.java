@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors from the JHipster project.
+ * Copyright 2017 the original author or authors.
  *
  * This file is part of the JHipster project, see http://www.jhipster.tech/
  * for more information.
@@ -16,17 +16,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package io.github.jhipster.service.filter;
 
-package io.github.jhipster.domain.util;
+/**
+ * Filter class for {@link Double} type attributes.
+ *
+ * @see RangeFilter
+ */
+public class DoubleFilter extends RangeFilter<Double> {
 
-import java.sql.Types;
-
-import org.hibernate.dialect.H2Dialect;
-
-public class FixedH2Dialect extends H2Dialect {
-
-    public FixedH2Dialect() {
-        super();
-        registerColumnType(Types.FLOAT, "real");
+    public DoubleFilter() {
     }
+
 }

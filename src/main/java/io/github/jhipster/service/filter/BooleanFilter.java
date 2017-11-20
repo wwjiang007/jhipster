@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors from the JHipster project.
+ * Copyright 2017 the original author or authors.
  *
  * This file is part of the JHipster project, see http://www.jhipster.tech/
  * for more information.
@@ -16,17 +16,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package io.github.jhipster.service.filter;
 
-package io.github.jhipster.domain.util;
+/**
+ * Class for filtering attributes with {@link Boolean} type. It can be added to a criteria class as a member, to support
+ * the following query parameters:
+ * <pre>
+ *      fieldName.equals=true
+ *      fieldName.specified=true
+ *      fieldName.specified=false
+ *      fieldName.in=true,false
+ * </pre>
+ */
+public class BooleanFilter extends Filter<Boolean> {
 
-import java.sql.Types;
-
-import org.hibernate.dialect.H2Dialect;
-
-public class FixedH2Dialect extends H2Dialect {
-
-    public FixedH2Dialect() {
-        super();
-        registerColumnType(Types.FLOAT, "real");
+    public BooleanFilter() {
     }
+
 }
